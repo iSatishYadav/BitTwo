@@ -240,3 +240,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/BitTwo/Properties/PublishProfiles/bittwo.pubxml

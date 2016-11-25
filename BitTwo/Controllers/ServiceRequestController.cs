@@ -28,6 +28,10 @@ namespace BitTwo.Controllers
                 await Conversation.SendAsync(activity, MakeServiceRequestDialog);
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
+            if (activity != null && activity.GetActivityType() == ActivityTypes.ConversationUpdate)
+            {
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
             else
             {
                 return new HttpResponseMessage(HttpStatusCode.NotFound);
