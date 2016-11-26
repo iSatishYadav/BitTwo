@@ -18,12 +18,23 @@ namespace BitTwo.Controllers
         {
             return Chain.From(
                 () => FormDialog.FromForm(ServiceRequest.CreateServiceRequestForm)
-                );
+                .Do(async (context, serviceRequest) =>
+                {
+                    var completed = await serviceRequest;
+                    var id = CreateServiceRequest(completed.Type, completed.Description);
+                    await context.PostAsync($"Don't worry, we've created a Service Request. Please note this id {id}, and FM Engineer will contact you very soon. :) ");
+                }
+                ));
+        }
+
+        private static Guid CreateServiceRequest(RequestType type, string description)
+        {
+            return Guid.NewGuid();
         }
 
         public virtual async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if(activity != null && activity.GetActivityType() == ActivityTypes.Message)
+            if (activity != null && activity.GetActivityType() == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, MakeServiceRequestDialog);
                 return new HttpResponseMessage(HttpStatusCode.OK);

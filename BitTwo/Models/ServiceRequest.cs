@@ -14,7 +14,9 @@ namespace BitTwo.Models
     [Serializable]
     public class ServiceRequest
     {
+        [Prompt("We know it sucks, but what would be the best category to describe your problem?{||}", ChoiceFormat ="{1}")]
         public RequestType Type { get; set; }
+        [Prompt("Could you please describe a little about the issue?")]
         public string Description { get; set; }
 
         public static IForm<ServiceRequest> CreateServiceRequestForm()
