@@ -32,9 +32,9 @@ namespace BitTwo.Controllers
             return Guid.NewGuid();
         }
 
-        public async Task<HttpResponseMessage> Get()
+        public HttpResponseMessage Get()
         {
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new  HttpResponseMessage(HttpStatusCode.OK);
         }
         public virtual async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
