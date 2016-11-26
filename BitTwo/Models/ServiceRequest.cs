@@ -8,7 +8,7 @@ namespace BitTwo.Models
 {
     public enum RequestType
     {
-        Software, Hardware, Network, Others
+        Software = 1, Hardware, Network, Others
     }
 
     [Serializable]
